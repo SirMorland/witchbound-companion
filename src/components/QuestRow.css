@@ -1,0 +1,98 @@
+.quest-table {
+	width: 100%;
+	border-collapse: separate;
+	border-spacing: 0 6px;
+}
+
+.quest-table thead th {
+	font-size: 12px;
+	font-weight: normal;
+	font-family: Georgia, serif;
+	font-style: italic;
+	color: #aa8d4b;
+	text-align: left;
+	padding: 4px 8px;
+}
+
+.quest-table thead th:nth-child(1) {
+	width: auto;
+}
+
+.quest-table thead th:nth-child(2) {
+	width: 72px;
+	text-align: center;
+}
+
+.quest-table thead th:nth-child(3) {
+	width: 48px;
+	text-align: center;
+}
+
+.quest-table thead th:nth-child(4) {
+	width: 48px;
+	text-align: center;
+}
+
+.quest-table tbody tr {
+	cursor: pointer;
+}
+
+.quest-table tbody td {
+	padding: 6px 8px;
+	vertical-align: middle;
+	font-size: 20px;
+	font-family: "Kalam", cursive;
+	background-color: #ffffff;
+	border: 1px solid #aa8d4b;
+}
+.quest-table tbody td:first-child {
+	border-radius: 4px 0 0 4px;
+}
+.quest-table tbody td:last-child {
+	border-radius: 0 4px 4px 0;
+}
+.quest-table tbody td + td {
+	border-left: none;
+}
+
+.quest-table tbody td:nth-child(2) {
+	text-align: center;
+}
+
+.quest-table tbody td:nth-child(3) {
+	text-align: center;
+}
+
+.quest-table tbody td:nth-child(4) {
+	text-align: center;
+}
+
+.quest-entry {
+	text-align: center;
+	font-variant-numeric: tabular-nums;
+}
+
+.quest-notes-preview {
+	text-align: center;
+}
+
+.notes-text {
+	color: #584861;
+}
+
+.empty-hint {
+	color: #aaa;
+	font-style: italic;
+}
+
+.quest-table .completed-label {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+}
+
+/* Prevent checkbox click from propagating to row */
+.quest-done {
+	position: relative;
+}

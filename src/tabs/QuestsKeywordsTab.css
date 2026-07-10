@@ -1,0 +1,33 @@
+/* Row hover indicator */
+.quest-row:hover {
+	background-color: #f9f6ef;
+}
+
+/* Keyword list */
+.keyword-list {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+}
+
+.keyword-row {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.keyword-input {
+	flex: 1;
+	padding: 6px 10px;
+	border: 1px solid #aa8d4b;
+	border-radius: 4px;
+	background: #fff;
+	color: #584861;
+	font-size: 20px;
+	outline: none;
+}
+
+.keyword-input:focus {
+	border-color: #7a6534;
+	box-shadow: 0 0 0 2px rgba(170, 141, 75, 0.25);
+}

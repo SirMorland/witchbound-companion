@@ -1,0 +1,51 @@
+.actions-tab fieldset {
+	display: grid;
+	gap: 8px;
+}
+
+.basic-actions {
+	display: grid;
+	grid-template-columns: max-content max-content;
+	gap: 16px;
+}
+
+.action-row {
+	display: grid;
+	grid-template-columns: 1fr max-content;
+	align-items: center;
+	gap: 16px;
+}
+
+.action-row__suffix {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+}
+
+.action-row .damaged-label {
+	display: flex;
+	flex-direction: column-reverse;
+	align-items: center;
+	cursor: pointer;
+	gap: 4px;
+}
+
+.action-row .damaged-label .damaged-text {
+	font-size: 14px;
+	font-style: italic;
+	color: #aa8c4b;
+	text-align: center;
+}
+
+.rulebox {
+	background-color: #40314f80;
+	padding: 0 16px;
+}
+.rulebox h2 {
+	color: #ffffff;
+	text-transform: initial;
+}
+.rulebox p {
+	color: #ffffff;
+	text-align: center;
+}

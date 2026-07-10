@@ -1,0 +1,8 @@
+.discoveries-achievements-tab fieldset {
+	display: grid;
+	gap: 8px;
+}
+
+.discoveries-achievements-tab .golden {
+	color: #aa8c4b;
+}

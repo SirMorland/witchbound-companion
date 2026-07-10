@@ -1,0 +1,21 @@
+.grid-checkboxes {
+	display: grid;
+	grid-template-columns: repeat(var(--cols, 4), minmax(48px, 1fr));
+	justify-items: start;
+	gap: 4px 8px;
+}
+
+.grid-checkboxes__item {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	cursor: pointer;
+	user-select: none;
+}
+
+.grid-checkboxes__letter {
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 1;
+	color: #584861;
+}

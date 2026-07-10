@@ -1,0 +1,138 @@
+/* ── Shared button utilities ── */
+
+.btn-secondary {
+	align-self: flex-start;
+	padding: 6px 16px;
+	border: 1px solid #aa8d4b;
+	border-radius: 4px;
+	background: #fff;
+	color: #584861;
+	font-size: 14px;
+	font-weight: bold;
+	cursor: pointer;
+	transition: background 0.1s ease;
+}
+.btn-secondary:hover {
+	background: #f9f6ef;
+}
+
+.btn-remove {
+	flex-shrink: 0;
+	width: 26px;
+	height: 26px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: 1px solid #aa8d4b;
+	border-radius: 4px;
+	background: #fff;
+	color: #584861;
+	font-size: 18px;
+	line-height: 1;
+	cursor: pointer;
+	transition: background 0.1s ease;
+}
+.btn-remove:hover {
+	background: #f9f6ef;
+}
+
+/* ── Fieldsets ── */
+fieldset {
+	border: 1px solid #aa8d4b;
+	outline: 2px #f99;
+	padding: 12px;
+	background-color: #f5f0e4;
+}
+
+legend {
+	margin: 0 auto;
+	font-weight: bold;
+	font-size: 13px;
+	padding: 4px 24px;
+	color: #fff;
+	text-transform: uppercase;
+	background-color: #40324f;
+	border: 1px solid #aa8d4b;
+	corner-shape: bevel;
+	border-radius: 13px;
+}
+
+.portrait {
+	width: 100%;
+}
+
+/* Property grid */
+.property-grid {
+	display: grid;
+	gap: 10px;
+}
+
+.property {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	position: relative;
+}
+
+h2 {
+	font-size: 16px;
+	font-weight: bold;
+	color: #584861;
+	text-transform: uppercase;
+	text-align: center;
+}
+
+.property input[type="number"],
+.property input[type="text"] {
+	padding: 6px 8px 6px 52px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	font-size: 20px;
+	font-family: "Kalam", cursive;
+}
+
+.property input[type="number"] + label,
+.property input[type="text"] + label {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	left: 8px;
+	font-size: 12px;
+	font-style: italic;
+	color: #aa8c4b;
+	z-index: 1;
+}
+
+.stat {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	background: linear-gradient(to right, #ba9d6c, #ede8d2);
+	border-radius: 32px 0 0 32px;
+	border: 1px solid #aa8d4b;
+	border-right: none;
+}
+
+.stat-icon {
+	width: 56px;
+	height: 56px;
+	object-fit: contain;
+	flex-shrink: 0;
+}
+
+.hint {
+	font-size: 12px;
+	text-align: center;
+	color: #584861;
+	margin: 0;
+}
+
+.property .condition-label {
+	display: flex;
+	align-items: center;
+	margin: 0 auto;
+	gap: 8px;
+	cursor: pointer;
+	text-transform: uppercase;
+	color: #aa8c4b;
+}

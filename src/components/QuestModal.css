@@ -1,0 +1,157 @@
+.quest-overlay {
+	position: fixed;
+	inset: 0;
+	background: rgba(0, 0, 0, 0.45);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 1000;
+}
+
+.quest-panel {
+	background: #f5f0e4;
+	border: 2px solid #aa8d4b;
+	border-radius: 8px;
+	padding: 20px 24px;
+	width: 90vw;
+	max-width: 420px;
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.quest-panel h4 {
+	margin: 0;
+	font-size: 15px;
+	font-weight: bold;
+	text-transform: uppercase;
+	color: #584861;
+}
+
+.quest-editor .completed-editor {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	cursor: pointer;
+}
+
+.quest-editor .completed-editor.completed-label .editor-label {
+	margin-bottom: 4px;
+}
+
+.quest-editor .completed-circle {
+	height: 50px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.quest-editor .circle-input {
+	flex-shrink: 0;
+}
+
+.quest-panel textarea {
+	width: 100%;
+	min-height: 160px;
+	padding: 8px 10px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	resize: vertical;
+	background: #fff;
+	box-sizing: border-box;
+}
+
+.quest-actions {
+	display: flex;
+	gap: 8px;
+	justify-content: flex-end;
+}
+
+.quest-actions button {
+	padding: 6px 16px;
+	border: 1px solid #aa8d4b;
+	border-radius: 4px;
+	font-size: 14px;
+	cursor: pointer;
+	font-weight: bold;
+	transition: background 0.1s ease;
+}
+
+.quest-actions .save-btn {
+	background: #aa8d4b;
+	color: #fff;
+}
+
+.quest-actions .save-btn:hover {
+	background: #8f7540;
+}
+
+.quest-actions .cancel-btn {
+	background: #fff;
+	color: #584861;
+}
+
+.quest-actions .cancel-btn:hover {
+	background: #f9f6ef;
+}
+
+.quest-actions .delete-quest-btn {
+	margin-right: auto;
+	border-color: #f99;
+	color: #f66;
+}
+
+.quest-actions .delete-quest-btn:hover {
+	background: #f99;
+	color: #fff;
+}
+
+/* ── Extended quest editor layout ── */
+
+.quest-editor .quest-editor-fields {
+	display: flex;
+	gap: 12px;
+	flex-wrap: wrap;
+}
+
+.quest-editor .quest-editor-fields .editor-field {
+	min-width: 0;
+}
+
+.quest-editor .quest-editor-fields .editor-field:first-child {
+	flex: 1;
+}
+
+.quest-editor .editor-field {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}
+
+.quest-editor .editor-field-full {
+	flex: 1;
+}
+
+.quest-editor .editor-label {
+	font-size: 13px;
+	font-style: italic;
+	color: #aa8d4b;
+}
+
+.quest-editor .editor-field input[type="text"],
+.quest-editor .editor-field input[type="number"],
+.quest-editor .editor-field textarea {
+	padding: 8px 10px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	background: #fff;
+}
+
+.quest-editor .editor-field input[type="text"] {
+	flex: 1;
+}
+
+.quest-editor .editor-number {
+	width: 48px;
+	text-align: center;
+}

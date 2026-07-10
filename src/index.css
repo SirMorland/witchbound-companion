@@ -1,0 +1,30 @@
+/* Global styles — body, buttons, etc. moved into tab-specific sheets. */
+html {
+	background: var(--body-bg);
+	background-size: cover;
+}
+
+@font-face {
+	font-family: Kalam;
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: url("./assets/kalam-regular.ttf") format("truetype");
+}
+
+input[type="text"],
+input[type="number"],
+textarea {
+	font-family: "Kalam", cursive;
+	font-size: 20px;
+}
+
+/* Remove number input spinners (cross-browser) */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+input[type="number"] {
+	appearance: textfield;
+}

@@ -1,0 +1,4 @@
+.circle-selector__circles {
+	display: flex;
+	gap: 6px;
+}
