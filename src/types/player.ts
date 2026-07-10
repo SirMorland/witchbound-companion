@@ -50,7 +50,14 @@ export interface PlayerLog {
 	potions: Consumable[];
 	ingredients: Consumable[];
 
-	// Discoveries & Achievements
+	// Discoveries, Followers & Achievements
 	discoveries: boolean[];
+	followers: boolean[];
 	achievements: boolean[];
+
+	// Broomways
+	broomways: string[];
+
+	// Notes
+	notes: string | undefined;
 }

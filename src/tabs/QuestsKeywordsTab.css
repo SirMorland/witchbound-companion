@@ -3,6 +3,17 @@
 	background-color: #f9f6ef;
 }
 
+.section-label {
+	font-size: 12px;
+	font-weight: normal;
+	font-family: Georgia, serif;
+	font-style: italic;
+	color: #aa8d4b;
+	display: block;
+	padding: 4px 8px;
+	margin-bottom: 4px;
+}
+
 /* Keyword list */
 .keyword-list {
 	display: flex;
@@ -30,4 +41,27 @@
 .keyword-input:focus {
 	border-color: #7a6534;
 	box-shadow: 0 0 0 2px rgba(170, 141, 75, 0.25);
+}
+
+/* Sortable keyword label */
+.keyword-sort {
+	cursor: pointer;
+	user-select: none;
+}
+.keyword-sort:hover {
+	text-decoration: underline;
+}
+.sort-indicator {
+	margin-left: 2px;
+	opacity: 0.6;
+}
+
+/* Sortable quest table headers */
+th.sortable {
+	cursor: pointer;
+	user-select: none;
+	white-space: nowrap;
+}
+th.sortable:hover {
+	background-color: #f9f6ef;
 }

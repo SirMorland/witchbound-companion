@@ -22,7 +22,18 @@ function App() {
 		document.documentElement.style.setProperty("--tab-bg", svgDataUrl(tabBg));
 	}, []);
 
-	const { logs, setLogs, activeTab, setActiveTab } = usePlayerLogs();
+	const {
+		logs,
+		setLogs,
+		activeTab,
+		setActiveTab,
+		keywordSort,
+		setKeywordSort,
+		mainQuestSort,
+		setMainQuestSort,
+		sideQuestSort,
+		setSideQuestSort,
+	} = usePlayerLogs();
 	const current = logs[0];
 
 	const onChange = (next: PlayerLogData) =>
@@ -34,6 +45,12 @@ function App() {
 			onChange={onChange}
 			activeTab={activeTab}
 			setActiveTab={setActiveTab}
+			keywordSort={keywordSort}
+			setKeywordSort={setKeywordSort}
+			mainQuestSort={mainQuestSort}
+			setMainQuestSort={setMainQuestSort}
+			sideQuestSort={sideQuestSort}
+			setSideQuestSort={setSideQuestSort}
 		/>
 	) : undefined;
 }

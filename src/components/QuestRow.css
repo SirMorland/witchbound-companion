@@ -28,11 +28,6 @@
 	text-align: center;
 }
 
-.quest-table thead th:nth-child(4) {
-	width: 48px;
-	text-align: center;
-}
-
 .quest-table tbody tr {
 	cursor: pointer;
 }
@@ -59,25 +54,9 @@
 	text-align: center;
 }
 
-.quest-table tbody td:nth-child(3) {
-	text-align: center;
-}
-
-.quest-table tbody td:nth-child(4) {
-	text-align: center;
-}
-
 .quest-entry {
 	text-align: center;
 	font-variant-numeric: tabular-nums;
-}
-
-.quest-notes-preview {
-	text-align: center;
-}
-
-.notes-text {
-	color: #584861;
 }
 
 .empty-hint {

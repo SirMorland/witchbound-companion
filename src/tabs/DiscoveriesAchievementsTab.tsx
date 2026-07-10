@@ -22,6 +22,12 @@ export function DiscoveriesAchievementsTab({
 		update({ discoveries });
 	};
 
+	const onFollowerToggle = (index: number) => {
+		const followers = [...log.followers];
+		followers[index] = !followers[index];
+		update({ followers });
+	};
+
 	const onAchievementToggle = (index: number) => {
 		const achievements = [...log.achievements];
 		achievements[index] = !achievements[index];
@@ -39,6 +45,20 @@ export function DiscoveriesAchievementsTab({
 				<GridCheckboxes
 					checked={log.discoveries}
 					onToggle={onDiscoveryToggle}
+					startLetter="A"
+				/>
+			</fieldset>
+
+			<fieldset>
+				<legend>Followers</legend>
+				<p className="hint">
+					If you gain any of the following Follower cards during play, mark
+					the corresponding bubble. Collect these cards each time you play.
+					You only lose a Follower card through the corresponding instruction.
+				</p>
+				<GridCheckboxes
+					checked={log.followers}
+					onToggle={onFollowerToggle}
 					startLetter="A"
 				/>
 			</fieldset>

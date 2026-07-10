@@ -1,0 +1,19 @@
+.notes-tab .notes-area {
+	width: 100%;
+	min-height: 400px;
+	resize: vertical;
+	padding: 8px;
+	border: 1px solid #aa8d4b;
+	border-radius: 4px;
+	background: #fff;
+	color: #584861;
+	font-family: "Kalam", cursive;
+	font-size: 18px;
+	outline: none;
+	box-sizing: border-box;
+}
+
+.notes-tab .notes-area:focus {
+	border-color: #7a6534;
+	box-shadow: 0 0 0 2px rgba(170, 141, 75, 0.25);
+}

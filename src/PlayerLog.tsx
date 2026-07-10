@@ -4,21 +4,38 @@ import { ActionsTab } from "./tabs/ActionsTab";
 import { QuestsKeywordsTab } from "./tabs/QuestsKeywordsTab";
 import { PotionsIngredientsTab } from "./tabs/PotionsIngredientsTab";
 import { DiscoveriesAchievementsTab } from "./tabs/DiscoveriesAchievementsTab";
+import { BroomwaysTab } from "./tabs/BroomwaysTab";
+import { NotesTab } from "./tabs/NotesTab";
 
+import type { SortDirection, QuestSort } from "./hooks/usePlayerLogs";
 
 interface PlayerLogProps {
 	log: PlayerLogData;
 	onChange: (next: PlayerLogData) => void;
-	activeTab: string;
-	setActiveTab: (updater: React.SetStateAction<string>) => void;
+	activeTab: number;
+	setActiveTab: (updater: React.SetStateAction<number>) => void;
+	keywordSort: SortDirection | undefined;
+	setKeywordSort: (
+		updater: React.SetStateAction<SortDirection | undefined>,
+	) => void;
+	mainQuestSort: QuestSort | undefined;
+	setMainQuestSort: (
+		updater: React.SetStateAction<QuestSort | undefined>,
+	) => void;
+	sideQuestSort: QuestSort | undefined;
+	setSideQuestSort: (
+		updater: React.SetStateAction<QuestSort | undefined>,
+	) => void;
 }
 
-const TABS = [
+const TAB_NAMES = [
 	"Main",
 	"Actions",
-	"Quests & Keywords",
-	"Potions & Ingredients",
-	"Discoveries & Achievements",
+	"Quests",
+	"Potions",
+	"Discoveries",
+	"Broomways",
+	"Notes",
 ] as const;
 
 export function PlayerLog({
@@ -26,30 +43,58 @@ export function PlayerLog({
 	onChange,
 	activeTab,
 	setActiveTab,
+	mainQuestSort,
+	setMainQuestSort,
+	sideQuestSort,
+	setSideQuestSort,
+	keywordSort,
+	setKeywordSort,
 }: PlayerLogProps) {
+	const renderContent = () => {
+		switch (activeTab) {
+			case 0:
+				return <MainTab log={log} onChange={onChange} />;
+			case 1:
+				return <ActionsTab log={log} onChange={onChange} />;
+			case 2:
+				return (
+					<QuestsKeywordsTab
+						log={log}
+						onChange={onChange}
+						keywordSort={keywordSort}
+						setKeywordSort={setKeywordSort}
+						mainQuestSort={mainQuestSort}
+						setMainQuestSort={setMainQuestSort}
+						sideQuestSort={sideQuestSort}
+						setSideQuestSort={setSideQuestSort}
+					/>
+				);
+			case 3:
+				return <PotionsIngredientsTab log={log} onChange={onChange} />;
+			case 4:
+				return <DiscoveriesAchievementsTab log={log} onChange={onChange} />;
+			case 5:
+				return <BroomwaysTab log={log} onChange={onChange} />;
+			case 6:
+				return <NotesTab log={log} onChange={onChange} />;
+			default:
+				return <MainTab log={log} onChange={onChange} />;
+		}
+	};
+
 	return (
 		<section>
-			{activeTab === "Main" && <MainTab log={log} onChange={onChange} />}
-			{activeTab === "Actions" && <ActionsTab log={log} onChange={onChange} />}
-			{activeTab === "Quests & Keywords" && (
-				<QuestsKeywordsTab log={log} onChange={onChange} />
-			)}
-			{activeTab === "Potions & Ingredients" && (
-				<PotionsIngredientsTab log={log} onChange={onChange} />
-			)}
-			{activeTab === "Discoveries & Achievements" && (
-				<DiscoveriesAchievementsTab log={log} onChange={onChange} />
-			)}
+			{renderContent()}
 
 			<nav className="floating-tabs">
-				{TABS.map((tab) => (
+				{TAB_NAMES.map((name, index) => (
 					<button
-						key={tab}
+						key={index}
 						type="button"
-						className={`floating-tab ${activeTab === tab ? "active" : ""}`}
-						onClick={() => setActiveTab(tab)}
+						className={`floating-tab ${activeTab === index ? "active" : ""}`}
+						onClick={() => setActiveTab(index)}
 					>
-						{tab}
+						{name}
 					</button>
 				))}
 			</nav>

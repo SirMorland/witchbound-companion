@@ -20,13 +20,6 @@ export function QuestRow({ quest, onToggle, onEdit }: QuestRowProps) {
 					<span className="empty-hint">—</span>
 				)}
 			</td>
-			<td className="quest-notes-preview">
-				{quest.notes ? (
-					<span className="notes-text">…</span>
-				) : (
-					<span className="empty-hint">—</span>
-				)}
-			</td>
 			<td className="quest-done">
 				<label className="completed-label" onClick={(e) => e.stopPropagation()}>
 					<CircleInput value={quest.completed} onChange={() => onToggle()} />

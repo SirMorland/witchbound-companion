@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import type { PlayerLog, Tool, Gift, Action } from "../types/player";
+import type { PlayerLog, Tool, Gift, Action, Quest } from "../types/player";
 
 /* Game design constants */
 const DEFAULT_TOOLS_COUNT = 3;
@@ -7,12 +7,24 @@ const DEFAULT_SPELLS_COUNT = 4;
 const DEFAULT_PROMPTS_COUNT = 6;
 const DEFAULT_GIFTS_COUNT = 2;
 const MAX_DISCOVERIES = 16;
+const MAX_FOLLOWERS = 3;
 const MAX_ACHIEVEMENTS = 18;
+const BROOMWAYS_COUNT = 9;
 
 const STORAGE_KEY = "witchbound-companion";
 
+export type SortDirection = "asc" | "desc";
+
+export interface QuestSort {
+	field: keyof Quest;
+	direction: SortDirection;
+}
+
 interface StoredState {
-	activeTab: string;
+	activeTab: number;
+	mainQuestSort?: QuestSort;
+	sideQuestSort?: QuestSort;
+	keywordSort?: SortDirection;
 	logs: PlayerLog[];
 }
 
@@ -67,24 +79,65 @@ function loadDefaultLog(): PlayerLog {
 		potions: [],
 		ingredients: [],
 		discoveries: Array.from({ length: MAX_DISCOVERIES }, () => false),
+		followers: Array.from({ length: MAX_FOLLOWERS }, () => false),
 		achievements: Array.from({ length: MAX_ACHIEVEMENTS }, () => false),
+		broomways: Array.from({ length: BROOMWAYS_COUNT }, () => ""),
+		notes: undefined,
 	};
+}
+
+function migrateLog(log: PlayerLog): PlayerLog {
+	if (!log.followers) {
+		return {
+			...log,
+			followers: Array.from({ length: MAX_FOLLOWERS }, () => false),
+		};
+	}
+	if (!log.broomways) {
+		return {
+			...log,
+			broomways: Array.from({ length: BROOMWAYS_COUNT }, () => ""),
+		};
+	}
+	return log;
 }
 
 function loadState(): StoredState {
 	const raw = localStorage.getItem(STORAGE_KEY);
-	if (!raw) return { activeTab: "Main", logs: [loadDefaultLog()] };
+	if (!raw)
+		return {
+			activeTab: 0,
+			mainQuestSort: undefined,
+			sideQuestSort: undefined,
+			keywordSort: undefined,
+			logs: [loadDefaultLog()],
+		};
 	try {
 		const parsed = JSON.parse(raw);
+		const rawLogs = Array.isArray(parsed.logs) ? parsed.logs : [];
+		const needsMigration = rawLogs.some(
+			(log: Record<string, unknown>) => !log.followers || !log.broomways,
+		);
+
 		return {
-			activeTab:
-				typeof parsed.activeTab === "string" ? parsed.activeTab : "Main",
-			logs: Array.isArray(parsed.logs) ? parsed.logs : [loadDefaultLog()],
+			activeTab: parsed.activeTab,
+			mainQuestSort: parsed.mainQuestSort,
+			sideQuestSort: parsed.sideQuestSort,
+			keywordSort: parsed.keywordSort,
+			logs: needsMigration
+				? rawLogs.map((log: PlayerLog) => migrateLog(log))
+				: rawLogs,
 		};
 	} catch {
 		// corrupt data — fall back to default
 	}
-	return { activeTab: "Main", logs: [loadDefaultLog()] };
+	return {
+		activeTab: 0,
+		mainQuestSort: undefined,
+		sideQuestSort: undefined,
+		keywordSort: undefined,
+		logs: [loadDefaultLog()],
+	};
 }
 
 function saveState(state: StoredState) {
@@ -96,6 +149,9 @@ export function usePlayerLogs() {
 
 	const logs = state.logs;
 	const activeTab = state.activeTab;
+	const mainQuestSort = state.mainQuestSort;
+	const sideQuestSort = state.sideQuestSort;
+	const keywordSort = state.keywordSort;
 
 	useEffect(() => {
 		saveState(state);
@@ -107,12 +163,50 @@ export function usePlayerLogs() {
 			logs: typeof updater === "function" ? updater(prev.logs) : updater,
 		}));
 
-	const setActiveTab = (updater: React.SetStateAction<string>) =>
+	const setActiveTab = (updater: React.SetStateAction<number>) =>
 		setState((prev) => ({
 			...prev,
 			activeTab:
 				typeof updater === "function" ? updater(prev.activeTab) : updater,
 		}));
 
-	return { logs, setLogs, activeTab, setActiveTab };
+	const setMainQuestSort = (
+		updater: React.SetStateAction<QuestSort | undefined>,
+	) =>
+		setState((prev) => ({
+			...prev,
+			mainQuestSort:
+				typeof updater === "function" ? updater(prev.mainQuestSort) : updater,
+		}));
+
+	const setSideQuestSort = (
+		updater: React.SetStateAction<QuestSort | undefined>,
+	) =>
+		setState((prev) => ({
+			...prev,
+			sideQuestSort:
+				typeof updater === "function" ? updater(prev.sideQuestSort) : updater,
+		}));
+
+	const setKeywordSort = (
+		updater: React.SetStateAction<SortDirection | undefined>,
+	) =>
+		setState((prev) => ({
+			...prev,
+			keywordSort:
+				typeof updater === "function" ? updater(prev.keywordSort) : updater,
+		}));
+
+	return {
+		logs,
+		setLogs,
+		activeTab,
+		setActiveTab,
+		mainQuestSort,
+		setMainQuestSort,
+		sideQuestSort,
+		setSideQuestSort,
+		keywordSort,
+		setKeywordSort,
+	};
 }
